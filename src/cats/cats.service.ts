@@ -1,4 +1,4 @@
-import { Cat } from './interfaces/cat.interface';
+import { CatInput } from './inputs/cat.input';
 import { CATS } from './cats.mock';
 import { HttpException, Injectable } from '@nestjs/common';
 
@@ -19,18 +19,18 @@ export class CatsService {
     return cat
   }
 
-  public async createCat(cat: Cat) {
+  public async createCat(cat: CatInput) {
     this.cats.push(cat)
     return this.cats;
   }
 
-  public async updateCatById(id: string, propertyValue: string, propertyName: string) {
+  public async updateCatById(id: string, new_cat: CatInput) {
     const index = this.cats.findIndex(cat => cat.id == id);
     
     if (index === -1) {
       throw new HttpException('Not Found', 404);
     }
-    this.cats[index][propertyName] = propertyValue
+    this.cats[index] = new_cat
     return this.cats[index];
   }
 

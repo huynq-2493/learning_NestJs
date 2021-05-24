@@ -1,5 +1,5 @@
-import { CreateCatDto } from './dto/create-cat.dto';
-import { Body, Controller, Get, Post, Put, Delete, Param, Query, ValidationPipe, UseGuards } from '@nestjs/common';
+import { CatType } from './dto/create-cat.dto';
+import { Body, Controller, Get, Post, Put, Delete, Param, Query, ValidationPipe, UseGuards, Patch } from '@nestjs/common';
 import { CatsService } from './cats.service';
 
 @Controller('cats')
@@ -17,7 +17,7 @@ export class CatsController {
   }
 
   @Post()
-  public createCat(@Body(new ValidationPipe) cat: CreateCatDto){
+  public createCat(@Body(new ValidationPipe) cat: CatType){
     return this.catsService.createCat(cat);
   }
 
@@ -26,10 +26,9 @@ export class CatsController {
     return this.catsService.deleteCatById(id);
   }
 
-  @Put(':id')
+  @Patch(':id')
   public updateCatById(@Param('id') id: string, @Query() query){
-    const propertyName = query.property_name
-    const propertyValue = query.property_value
-    return this.catsService.updateCatById(id, propertyValue, propertyName);
+    const cat = query.cat
+    return this.catsService.updateCatById(id, cat);
   }
 }
