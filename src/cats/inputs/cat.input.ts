@@ -1,6 +1,7 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
-@ObjectType()
-export class CatType {
+import { Field, ID, InputType } from '@nestjs/graphql';
+
+@InputType()
+export class CatInput {
   @Field(() => ID)
   id: string;
 
