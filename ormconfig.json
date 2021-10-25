@@ -1,0 +1,14 @@
+{
+  "type": "postgres",
+  "host": "localhost",
+  "port": 5432,
+  "username": "postgres",
+  "password": 123123,
+  "database": "test_graphql",
+  "synchronize": false,
+  "logging": true,
+  "entities": ["dist/**/*.entity.js"],
+  "migrations": ["dist/database/migrations/*.js"],
+  "subscribers": ["dist/database/subscriber/*.js"],
+  "cli": { "migrationsDir": "src/database/migrations" }
+}
